@@ -1,0 +1,169 @@
+.two-box {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding-right: 2rem;
+  height: 80vh;
+  overflow-x: none;
+  background: url('/assets/bg.png') no-repeat center/cover;
+}
+
+
+.left-box,
+.right-box {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.right-box {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  color: #fff;
+  flex-direction: column;
+  padding-right: 7rem;
+}
+
+.hero-head {
+  text-align: left;
+  margin: 0px;
+  padding: 0px;
+  font-weight: 600;
+  font-size: 52px;
+}
+
+.hero-text {
+  padding-top: 10px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 28px;
+}
+
+/* balls */
+.ball {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  opacity: 0.4;
+  background: radial-gradient(circle, #1f060e, #2e0312);
+  z-index: 0;
+}
+
+.ball1 {
+  top: 20px;
+  left: 10%;
+}
+
+.ball2 {
+  top: 60%;
+  left: 40%;
+  width: 200px;
+  height: 200px;
+}
+
+.ball3 {
+  top: 30%;
+  left: 75%;
+}
+
+.ball4 {
+  top: 15%;
+  left: 72%;
+  width: 200px;
+  height: 200px;
+}
+
+
+.btn {
+  background-color: #ff4438;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 15px 30px;
+  margin-top: 20px;
+}
+.form-sec{
+ width: 100%;
+ padding: 5rem 8rem 1rem 8rem;
+ height: 40vh;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+
+}
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+form > input{
+padding: 10px 24px;
+  background-color: #000000;
+  color: #fff;
+  font-size: 18px;
+  margin: 20px;
+  font-weight: 600;
+  border: 4px solid #fff;
+
+}
+form > button{
+  color:#fff;
+  background-color: #ff4438;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 15px 35px;
+  margin: 20px;
+  border-radius: 10px;
+  outline: none;
+}
+.listing {
+  background: #1f060e;
+  border-radius: 30px;
+  
+}
+
+.listing-heading {
+  color: var(--primary-color);
+  padding: 10px 20px 0 20px;
+}
+
+.listing-photo {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 30px 30px 0 0;
+}
+
+.listing-location {
+  padding: 10px 20px 20px 20px;
+}
+
+.listing-location::before {
+  content: url("/assets/location-pin.svg") / "";
+}
+
+section.listing a {
+  padding-left: 20px;
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+section.listing a::after {
+  content: "\203A";
+  margin-left: 5px;
+}
+
+.listing-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* space between cards */
+  justify-content: center;
+}
