@@ -65,7 +65,5 @@ onEnter(event: KeyboardEvent) {
   this.cardForm.reset();
   this.imageBase64 = '';
 
-  // OPTIONAL: navigate only if form page ≠ home
-  this.router.navigate(['/home']);
 }
 }
