@@ -1,10 +1,10 @@
 <section class="two-box">
-  <!-- Floating background balls -->
+  
   <div class="ball ball1"></div>
   <div class="ball ball2"></div>
   <div class="ball ball3"></div>
-   <div class="ball ball4"></div>
-    
+  <div class="ball ball4"></div>
+
 
   <div class="left-box">
     <img src="assets/todo.png" />
@@ -12,22 +12,45 @@
 
   <div class="right-box">
     <h2 class="hero-head">Manage Tasks Smoothly and Live Stress-Free</h2>
-    <p class="hero-text">Manage Tasks Smoothly and Live Stress-Free brings clarity to your day. Create tasks, set deadlines, and track progress in one simple space. Stay organized, avoid last-minute pressure, and keep life balanced. Boost productivity, focus on what matters, and enjoy a calmer, more efficient routine.</p>
-    <button class="btn">Click</button>
+    <p class="hero-text">Manage Tasks Smoothly and Live Stress-Free brings clarity to your day. Create tasks, set
+      deadlines, and track progress in one simple space. Stay organized, avoid last-minute pressure, and keep life
+      balanced. Boost productivity, focus on what matters, and enjoy a calmer, more efficient routine.</p>
+   
+    <button  class="btn">Contact Us</button>
   </div>
 </section>
 
-<!-- second section  -->
-  <section class="form-sec">
-    <form>
-      <input type="text" placeholder="Filter by city">
-      <button class="primary" type="button">Search</button>
-    </form>
-    
-  </section>
-  <div class="listing-wrapper">
-  <app-housing-location
-    *ngFor="let item of housingLocationList"
-    [housingLocation]="item">
+
+
+ <!-- <div class="listing-wrapper">
+  <app-housing-location *ngFor="let item of housingLocationList" [housingLocation]="item">
   </app-housing-location>
-</div>
+
+ 
+</div>  -->
+
+
+  <!-- <div>
+  <input
+    placeholder="Search by title or location"
+    [(ngModel)]="searchText" />
+</div> -->
+
+<div class="grid">
+  <div class="card" *ngFor="let c of filteredCards(); let i = index">
+
+    <img *ngIf="c.image" [src]="c.image">
+
+    <h2 (click)="toggleExpand(c)">{{ c.title }}</h2>
+    <p><strong>{{ c.location }}</strong></p>
+
+    <p *ngIf="c.expanded">{{ c.description }}</p>
+
+    <button (click)="deleteCard(i)">Delete</button>
+
+
+    
+  </div>
+  
+</div> 
+<app-contact></app-contact>

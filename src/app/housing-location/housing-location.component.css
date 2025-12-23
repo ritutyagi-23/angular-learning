@@ -2,16 +2,20 @@
 .listing {
   background: var(--accent-color);
   border-radius: 30px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  height: 66vh;
   width: 400px;
  border: 3px solid #fff;
+ overflow: hidden;         
+ transition: height 0.3s ease;
+
 }
 .listing-heading {
   color: #fff;
   padding: 10px 20px 0 20px;
+  cursor: pointer;
 }
 .listing-photo {
   height: 250px;
@@ -20,7 +24,19 @@
   border-radius: 30px 30px 0 0;
 }
 .listing-location {
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 10px 20px;
+
+}
+
+.listing>.listing-p{
+  padding: 0px 20px 50px 20px;
+    max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.listing-p.show{
+  max-height: 500px;
 }
 .listing-location::before {
   content: url("/assets/location-pin.svg") / "";
@@ -36,9 +52,5 @@ section.listing a::after {
   margin-left: 5px;
 }
 
+ 
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/

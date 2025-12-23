@@ -1,0 +1,86 @@
+section {
+
+    width: 70%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+.contactForm {
+    width: 100%;
+    height: auto;
+    background-color: orangered;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 30px;
+    border: 7px double orangered;
+    margin-bottom: 2rem;
+}
+
+.contactForm>h2 {
+    color: #fff;
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form-col {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 13px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                
+}
+
+.form-group input,
+.form-group textarea {
+  height: 55px;           /* 👈 equal height */
+  width: 100%;
+  padding: 0 25px;
+  border-radius: 30px;
+  border: 3px solid orangered;
+  font-size: 14px;
+}
+.form-group textarea {
+  resize: none;
+  padding-top: 16px;
+}
+.form-group input[type="file"] {
+  padding: 12px 25px;
+  background-color: #fff;
+  cursor: pointer;
+}
+.form-group small {
+  color: #fff;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+form>.btns {
+    background-color: #ffffff;
+    color: #d71616;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 15px 30px;
+    margin: 15px 20px;
+    border: 3px double #fff;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .form-col {
+    flex-direction: column;
+  }
+}
