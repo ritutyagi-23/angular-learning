@@ -1,91 +1,93 @@
-import { Component } from '@angular/core';
-import { AfterViewInit } from '@angular/core';
-import { gsap } from 'gsap';
-import { HousingLocationComponent } from '../housing-location/housing-location.component';
-import { CommonModule } from '@angular/common';
-import { HousingLocation } from '../housinglocation';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import {
-  FormsModule 
-} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { OnInit } from '@angular/core';
+import { Card } from '../models/card.model';
+import { CommonModule } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 
 
-
-
-  @Component({
-  selector: 'app-home',
+@Component({
+   selector: 'app-home',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ContactComponent, 
-  ],
+  imports: [CommonModule, ReactiveFormsModule,ContactComponent], 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+export class HomeComponent implements OnInit {
+  cards: Card[] = [];
+ searchControl = new FormControl('');
 
-export class HomeComponent  implements OnInit {
-    cards: any[] = [];
-  searchText: string = '';
 
   constructor(private dataService: DataService) {}
 
- ngOnInit() {
-  this.cards = this.dataService.getCards();
+  ngOnInit() {
+    this.dataService.cards$.subscribe(cards => {
+  this.cards = cards;
+    });
+     this.searchControl.valueChanges.subscribe(() => {
+    this.currentPage = 1;
+  });
+  }
+  
+
+onCardCreated(card: any) {
+  console.log('RECEIVED IN HOME:', card); // 👈 DEBUG
+  this.dataService.addCard(card).subscribe();
 }
-  deleteCard(i: number) {
-    this.dataService.deleteCard(i);
+
+deleteCard(id: number) {
+  this.dataService.deleteCard(id).subscribe();
+}
+
+
+currentPage = 1;
+itemsPerPage = 3; 
+searchText = '';
+
+get filteredCards() {
+  const search = this.searchControl.value?.toLowerCase() || '';
+
+  if (!search) {
+    return this.cards;
   }
 
-  toggleExpand(card: any) {
-    card.expanded = !card.expanded;
+  return this.cards.filter(card =>
+    card.title.toLowerCase().includes(search) ||
+    card.description.toLowerCase().includes(search) ||
+    card.location.toLowerCase().includes(search)
+  );
+}
+
+
+get paginatedCards() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  return this.filteredCards.slice(startIndex, startIndex + this.itemsPerPage);
+}
+
+get totalPages() {
+  return Math.ceil(this.filteredCards.length / this.itemsPerPage);
+}
+
+
+goToPage(page: number) {
+  if (page < 1 || page > this.totalPages) return;
+  this.currentPage = page;
+}
+
+prevPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
   }
+}
 
-  filteredCards() {
-    return this.cards.filter(c =>
-      c.title.toLowerCase().includes(this.searchText.toLowerCase()) ||
-      c.location.toLowerCase().includes(this.searchText.toLowerCase())
-    );
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
   }
+}
+onSearchChange() {
+  this.currentPage = 1;
+}
 
-
-
-  
-  ngAfterViewInit(): void {
-    gsap.to('.ball1', {
-      x: 200,
-      y: -80,
-      repeat: -1,
-      yoyo: true,
-      duration: 3
-    });
-
-    gsap.to('.ball2', {
-      x: -400,
-      y: 80,
-      repeat: -1,
-      yoyo: true,
-      duration: 4
-    });
-
-    gsap.to('.ball3', {
-      x: 60,
-      y: -80,
-      repeat: -1,
-      yoyo: true,
-      duration: 9
-    });
-
-
-
-
-  }
-
-
-  
 }

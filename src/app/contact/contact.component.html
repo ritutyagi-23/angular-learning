@@ -1,45 +1,27 @@
 <section>
-<div class="contactForm">
-<h2>Card Addition Form</h2>
-<form [formGroup]="cardForm" (ngSubmit)="submitForm()">
+ <div  class="contactForm ">
+  <h2>Card Creation Form</h2>
+
+<form [formGroup]="cardForm" (ngSubmit)="submitForm()" class="form-col">
+ <div class="form-group">
+  <input type="text" placeholder="Title" formControlName="title" />
+
+  <textarea placeholder="Description" formControlName="description"></textarea></div>
 
 
- <div class="form-col">
   <div class="form-group">
-  <input placeholder="Title" formControlName="title" class="form-col">
-  <small *ngIf="cardForm.get('title')?.touched && cardForm.get('title')?.invalid">
-    Title is required (min 3 chars)
-  </small> </div>
+  <input type="text" placeholder="Location" formControlName="location" />
 
-   <div class="form-group">
-  <input placeholder="Location" formControlName="location" class="form-col">
-  <small *ngIf="cardForm.get('location')?.touched && cardForm.get('location')?.invalid">
-    Location is required
-  </small>
-  </div>
-  </div>
-
-   <div class="form-col">
-     
-  <div class="form-group">
-  <input type="file" accept="image/*" (change)="onImageSelect($event)" class="form-col">
+  <input
+    type="text"
+    placeholder="Image names (todo.png)"
+    formControlName="images"
+  />
 </div>
-<div class="form-group">
-  <textarea
-  placeholder="Description"
-  formControlName="description"
-  class="form-col"
-  (keydown.enter)="onEnter($any($event))">
-</textarea>
-  <small *ngIf="cardForm.get('description')?.touched && cardForm.get('description')?.invalid">
-    Min 10 characters required
-  </small></div>
-  </div>
 
-  <button type="submit" [disabled]="cardForm.invalid" class="btns">
-    Create Card
-  </button>
+  <button type="submit" class="btns">Add Card</button>
 
 </form>
-</div>
+ </div>
+
 </section>

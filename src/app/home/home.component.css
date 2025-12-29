@@ -6,7 +6,7 @@
   height: 100vh;
   overflow-x: none;
   background: url('/assets/bg.png') no-repeat center/cover;
-padding-bottom: 10rem;
+  padding-bottom: 10rem;
 }
 
 
@@ -18,8 +18,9 @@ padding-bottom: 10rem;
   align-items: center;
   color: #fff;
 }
-.left-box>img{
-   width: 100%;
+
+.left-box>img {
+  width: 100%;
   height: 450px;
   object-fit: contain;
   /* object-position: top;
@@ -99,22 +100,24 @@ object-position: bottom; */
   padding: 15px 30px;
   margin-top: 20px;
 }
-.form-sec{
- width: 100%;
- padding: 5rem 8rem 1rem 8rem;
- height: 40vh;
- display: flex;
- align-items: center;
- justify-content: center;
+
+.form-sec {
+  width: 100%;
+  padding: 5rem 8rem 1rem 8rem;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
 }
-form{
+
+form {
   display: flex;
   flex-direction: column;
 }
 
-form > input{
-padding: 10px 24px;
+form>input {
+  padding: 10px 24px;
   background-color: #000000;
   color: #fff;
   font-size: 18px;
@@ -123,8 +126,9 @@ padding: 10px 24px;
   border: 4px solid #fff;
 
 }
-form > button{
-  color:#fff;
+
+form>button {
+  color: #fff;
   background-color: #ff4438;
   font-size: 16px;
   font-weight: 600;
@@ -133,10 +137,11 @@ form > button{
   border-radius: 10px;
   outline: none;
 }
+
 .listing {
   background: #1f060e;
   border-radius: 30px;
-  
+
 }
 
 .listing-heading {
@@ -174,7 +179,8 @@ section.listing a::after {
   padding: 5rem 2rem;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* space between cards */
+  gap: 20px;
+  /* space between cards */
   justify-content: center;
 }
 
@@ -195,27 +201,189 @@ button {
   cursor: pointer;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+.card-flex{
+display: flex;
+  flex-wrap: wrap;
   gap: 20px;
-  padding: 3rem;
-  }
-
-.card {
-  padding: 15px;
-  background: #fff;
-  color: #000000;
-  width: 100%;
-  height: 450px;
-  padding: 20px;
-  border-radius: 12px;
-  border: 3px solid orangered;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
+.card {
+    flex: 0 0 calc(33.333% - 20px); 
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  padding: 16px;
   border-radius: 10px;
+  background: #fff;
+  height: 100vh;
+  color: #000000 !important;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background-color: #ffb69b;
+  color: #ddd;
+}
+
+.image-flex {
+   display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.image-flex img {
+ width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+.btns {
+  color: #ffffff;
+  background-color: #d71616;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 69px;
+  padding: 15px 30px;
+  margin: 15px 20px;
+  border: 3px solid #fcf909;
+  cursor: pointer;
+  width: 140px;
+
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  margin-bottom: 3rem;
+}
+
+.pagination button {
+  padding: 15px 42px;
+  border: 1px solid #ccc;
+  background: #ffffff !important;
+  cursor: pointer;
+  color: #000000 !important;
+}
+
+.pagination button.active {
+  background: #000 !important;
+  color: #ffffff !important;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: allowed;
+}
+
+
+.search-input[_ngcontent-ng-c155063788] {
+    width: 50%;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: AUTO;
+    border: 6px double #e74c3c;
+}
+
+
+
+
+@media (max-width: 1024px) {
+  .card {
+    flex: 0 0 calc(50% - 20px); /* 2 cards */
+  }
+
+}
+
+@media (max-width: 600px) {
+  .contactForm {
+    width: 100%;
+    height: auto;
+    background-color: orangered;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 30px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+  
+  .card {
+    width: 100%;
+    height: 72vh;
+    flex: 0 0 calc(100% - 20px);
+    padding: 20px;
+  }
+    .img-flex img{
+    width: 340px;
+  }
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    margin-bottom: 3rem;
+    padding: 20px;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.pagination button.active {
+    background: #000 !important;
+    color: #ffffff !important;
+    font-size: 19px;
+    font-weight: 600;
+}
+.pagination button {
+    padding: 15px 42px;
+    border: 1px solid #ccc;
+    background: #ffffff !important;
+    cursor: pointer;
+    color: #000000 !important;
+    font-size: 19px;
+    font-weight: 600;
+}
+button {
+    margin-top: 10px;
+    background: red;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    width: 50%;
+}
+.card-flex{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    padding: 20px;
+}
 }

@@ -6,14 +6,15 @@ section {
     justify-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .contactForm {
     width: 100%;
     height: auto;
     background-color: orangered;
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding: 4rem 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,25 +36,29 @@ section {
   gap: 20px;
   width: 100%;
   margin-bottom: 13px;
+  margin-top: 25px;
+  flex-direction: column;
 }
 
 .form-group {
   display: flex;
-  flex-direction: column;
+  gap: 20px;
   flex: 1;                
 }
 
 .form-group input,
 .form-group textarea {
-  height: 55px;           /* 👈 equal height */
+  height: 55px;           
   width: 100%;
   padding: 0 25px;
   border-radius: 30px;
   border: 3px solid orangered;
   font-size: 14px;
+  color:#000;
 }
 .form-group textarea {
-  resize: none;
+  /* resize: none; */
+  color: #000;
   padding-top: 16px;
 }
 .form-group input[type="file"] {
@@ -74,9 +79,11 @@ form>.btns {
     font-weight: 600;
     border-radius: 10px;
     padding: 15px 30px;
-    margin: 15px 20px;
+    margin: 20px 20px 15px 20px;
     border: 3px double #fff;
     cursor: pointer;
+    margin: auto;
+    width: 200px;
 }
 
 @media (max-width: 768px) {

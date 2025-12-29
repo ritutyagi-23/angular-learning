@@ -1,26 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { Card } from './models/card.model';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  private cards: any[] = [];
+  private apiUrl = 'http://localhost:3000/cards';
 
-  constructor() {
-    const saved = localStorage.getItem('cards');
-    if (saved) this.cards = JSON.parse(saved);
+  private cardsSubject = new BehaviorSubject<Card[]>([]);
+  cards$ = this.cardsSubject.asObservable();
+
+  constructor(private http: HttpClient) {
+    this.loadCards();
   }
 
-getCards() {
-  return this.cards; // SAME array reference
+loadCards() {
+  this.http.get<any[]>(this.apiUrl).subscribe({
+    next: cards => {
+    this.cardsSubject.next(cards);
+    }
+  });
+}
+
+addCard(card: any) {
+ return this.http.post<any>(this.apiUrl, card).pipe(
+    tap(saved => {
+    this.cardsSubject.next([...this.cardsSubject.value, saved]);
+    })
+  );
+}
+deleteCard(id: number) {
+  return this.http.delete(`http://localhost:3000/cards/${id}`).pipe(
+    tap(() => {
+      const updated = this.cardsSubject.value.filter(card => card.id !== id);
+      this.cardsSubject.next(updated);
+    })
+  );
 }
 
 
-  addCard(card: any) {
-    this.cards.push(card);
-    localStorage.setItem('cards', JSON.stringify(this.cards));
-  }
-
-  deleteCard(index: number) {
-    this.cards.splice(index, 1);
-    localStorage.setItem('cards', JSON.stringify(this.cards));
-  }
 }

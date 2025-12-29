@@ -1,69 +1,65 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DataService } from '../data.service';
-
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Card } from '../models/card.model';
+import { ViewChild, ElementRef } from '@angular/core';
 
 
 @Component({
   selector: 'app-contact',
   standalone: true,
- imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css',
+  styleUrl: './contact.component.css'
 })
 export class ContactComponent {
+  @Output() cardCreated = new EventEmitter<Card>();
 
-  imageBase64 = '';
+  cardForm: FormGroup;
+  @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
+  imagesBase64: string[] = [];
 
-  cardForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
-    location: ['', Validators.required],
-    description: ['', [Validators.required, Validators.minLength(10)]]
-  });
-
-  constructor(
-    private fb: FormBuilder,
-    private dataService: DataService,
-    private router: Router
-  ) {}
-
-onImageSelect(event: any) {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    this.imageBase64 = reader.result as string;
-  };
-  reader.readAsDataURL(file);
-}
-onEnter(event: KeyboardEvent) {
-  event.preventDefault();
-  this.submitForm();
-}
-
-
-  submitForm() {
-  if (this.cardForm.invalid) {
-    this.cardForm.markAllAsTouched();
-    return;
+  constructor(private fb: FormBuilder) {
+    this.cardForm = this.fb.group({
+      title: ['', Validators.required],
+  description: ['', Validators.required],
+  location: ['', Validators.required],
+  images: ['']
+    });
   }
 
-  const cardData = {
-    title: this.cardForm.value.title,
-    location: this.cardForm.value.location,
-    description: this.cardForm.value.description,
-    image: this.imageBase64,   // ✅ image is captured
-    expanded: false
+  onImageSelect(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files) return;
+
+    Array.from(input.files).forEach(file => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (reader.result) {
+          this.imagesBase64.push(reader.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+ submitForm() {
+  if (this.cardForm.invalid) return;
+
+  const imageNames = this.cardForm.value.images
+    .split(',')
+    .map((img: string) => `assets/${img.trim()}`);
+
+  const newCard = {
+    title: this.cardForm.value.title!,
+    description: this.cardForm.value.description!,
+    location: this.cardForm.value.location!,
+    images: imageNames
   };
 
-  this.dataService.addCard(cardData);
-
-  // ✅ reset AFTER saving
+  this.cardCreated.emit(newCard);
   this.cardForm.reset();
-  this.imageBase64 = '';
-
 }
+
+
 }
