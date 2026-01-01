@@ -35,6 +35,15 @@
       "images": [
         "assets/todo.png"
       ]
+    },
+    {
+      "id": "f5d9",
+      "title": "Change Detection Mechanism-moves",
+      "description": "Change Detection Mechanism-movesChange Detection Mechanism-moves",
+      "location": "up",
+      "images": [
+        "assets/todo.png"
+      ]
     }
   ]
 }

@@ -1,11 +1,15 @@
 .navbar {
+  list-style: none;
   display: flex;
-  justify-content: space-between;
+  gap: 25px;
+  color: #fff !important;
+  justify-content: start;
   align-items: center;
-  margin: 0rem 5rem;
-  padding: 12px 25px;
-  color: #fff;
+  width: 100% !important;
+  margin-bottom: 40px;
   height: 100px;
+  padding-top: 2rem;
+
 }
 
 .logo {
@@ -13,18 +17,39 @@
   font-weight: 600;
 }
 
-.nav-links {
-  list-style: none;
+.nav-cont{
   display: flex;
-  gap: 25px;
+  justify-content: end;
+  align-items: center;
+  width: 70%;
+  padding: 0rem 10rem;
+}
+.navbar h2{
+    cursor: pointer;
+    width: 30% ;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
 }
 
-.nav-links a {
-  color: #fff;
+.navbar a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: 18px;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    padding: 0px 3rem;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.navbar a:hover {
   text-decoration: none;
-  font-size: 18px;
 }
-
-.nav-links a:hover {
-  text-decoration: underline;
+.nav-cont>.active{
+  color: #c3db38 !important;
 }

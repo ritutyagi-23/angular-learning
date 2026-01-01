@@ -1,9 +1,10 @@
 <nav class="navbar">
-  <div class="logo">MyApp</div>
-
-  <ul class="nav-links">
-    <li><a routerLink="/">Home</a></li>
-
-    <li><a routerLink="/contact">Contact</a></li>
-  </ul>
+  <h2 routerLink="/">{{ appName }}</h2>
+<div class="nav-cont">
+  <a *ngFor="let link of links"
+     [routerLink]="link.path"
+     routerLinkActive="active">
+     {{ link.label }}
+  </a>
+  </div>
 </nav>

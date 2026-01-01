@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home/home.component';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, HomeComponent],
-  template: `<app-home></app-home>`
+  imports: [RouterOutlet, NavbarComponent, ],
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'angular-learning';
+
+  navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About', path: '/about' },
+    { label : 'Contact', path: './contact'}
+  ];
 }

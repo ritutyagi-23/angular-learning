@@ -295,17 +295,18 @@ display: flex;
   cursor: allowed;
 }
 
-
-.search-input[_ngcontent-ng-c155063788] {
+.search-input {
     width: 50%;
-    padding: 8px 12px;
+    padding: 15px 32px;
     border: 1px solid #ccc;
-    border-radius: 6px;
+    border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: AUTO;
     border: 6px double #e74c3c;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 

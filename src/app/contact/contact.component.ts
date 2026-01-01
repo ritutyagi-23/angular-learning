@@ -3,23 +3,25 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Card } from '../models/card.model';
 import { ViewChild, ElementRef } from '@angular/core';
-
+import { PageLayoutComponent } from '../shared/page-layout/page-layout.component';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,PageLayoutComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
 export class ContactComponent {
-  @Output() cardCreated = new EventEmitter<Card>();
+ 
 
   cardForm: FormGroup;
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
-  imagesBase64: string[] = [];
+  images: string[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+  private dataService: DataService) {
     this.cardForm = this.fb.group({
       title: ['', Validators.required],
   description: ['', Validators.required],
@@ -36,29 +38,26 @@ export class ContactComponent {
       const reader = new FileReader();
       reader.onload = () => {
         if (reader.result) {
-          this.imagesBase64.push(reader.result as string);
+          this.images.push(reader.result as string);
         }
       };
       reader.readAsDataURL(file);
     });
   }
 
- submitForm() {
+submitForm() {
   if (this.cardForm.invalid) return;
 
-  const imageNames = this.cardForm.value.images
-    .split(',')
-    .map((img: string) => `assets/${img.trim()}`);
-
-  const newCard = {
+  const newCard: Card = {
     title: this.cardForm.value.title!,
     description: this.cardForm.value.description!,
     location: this.cardForm.value.location!,
-    images: imageNames
+    images: ['assets/todo.png']
   };
 
-  this.cardCreated.emit(newCard);
+  this.dataService.addCard(newCard); // 🔥 REAL UPDATE
   this.cardForm.reset();
+  this.images = [];
 }
 
 
