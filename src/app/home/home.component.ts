@@ -24,10 +24,10 @@ export class HomeComponent implements OnInit {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    // 🔥 Load cards from server
+    //  Load cards from server
     this.dataService.loadCards();
 
-    // 🔥 Auto update UI
+    //  Auto update UI
     this.dataService.cards$.subscribe(cards => {
       this.cards = cards;
     });
@@ -42,7 +42,7 @@ deleteCard(id: number) {
 }
 
 
-  // 🔍 Search
+  //  Search
   get filteredCards() {
     const search = this.searchControl.value?.toLowerCase() || '';
     return this.cards.filter(card =>
@@ -52,7 +52,7 @@ deleteCard(id: number) {
     );
   }
 
-  // 📄 Pagination
+  //  Pagination
   get paginatedCards() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     return this.filteredCards.slice(start, start + this.itemsPerPage);
