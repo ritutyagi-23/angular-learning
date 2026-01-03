@@ -14,7 +14,14 @@
 <div class="card-flex">
   <div class="card" *ngFor="let card of paginatedCards">
     <div class="img-flex">
-      <img *ngFor="let img of card.images" [src]="img" />
+      <img
+    *ngFor="let img of card.images; let i = index"
+    [ngSrc]="img"
+    width="400"
+    height="400"
+    [priority]="i === 0"
+    alt="Card Image"
+  />
     </div>
 
     <h3>{{ card.title }}</h3>

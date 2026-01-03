@@ -4,11 +4,12 @@ import { Card } from '../models/card.model';
 import { CommonModule } from '@angular/common';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { PageLayoutComponent } from '../shared/page-layout/page-layout.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, PageLayoutComponent],
+  imports: [CommonModule, ReactiveFormsModule, PageLayoutComponent, NgOptimizedImage],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

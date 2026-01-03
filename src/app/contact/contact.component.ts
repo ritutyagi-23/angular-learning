@@ -6,10 +6,11 @@ import { ViewChild, ElementRef } from '@angular/core';
 import { PageLayoutComponent } from '../shared/page-layout/page-layout.component';
 import { DataService } from '../data.service';
 
+
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,PageLayoutComponent],
+  imports: [CommonModule, ReactiveFormsModule, PageLayoutComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
